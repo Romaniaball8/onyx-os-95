@@ -1,0 +1,188 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-display: Georgia, serif;
+    --font-body: Tahoma, Verdana, sans-serif;
+    --font-mono: "Courier New", monospace;
+    --radius: 0;
+
+    --background: 0.74 0 0;
+    --foreground: 0.2 0 0;
+    --card: 0.78 0 0;
+    --card-foreground: 0.2 0 0;
+    --popover: 0.78 0 0;
+    --popover-foreground: 0.2 0 0;
+
+    --primary: 0.74 0 0;
+    --primary-foreground: 0.2 0 0;
+
+    --secondary: 0.5 0.18 200;
+    --secondary-foreground: 0.98 0 0;
+    --muted: 0.65 0 0;
+    --muted-foreground: 0.3 0 0;
+
+    --accent: 0.55 0.22 200;
+    --accent-foreground: 0.98 0 0;
+
+    --destructive: 0.5 0.25 25;
+    --destructive-foreground: 0.98 0 0;
+
+    --border: 0.68 0 0;
+    --input: 0.85 0 0;
+    --ring: 0.55 0.22 200;
+
+    --chart-1: 0.55 0.22 200;
+    --chart-2: 0.5 0.25 25;
+    --chart-3: 0.45 0.2 120;
+    --chart-4: 0.6 0.15 280;
+    --chart-5: 0.65 0.18 40;
+
+    --sidebar: 0.74 0 0;
+    --sidebar-foreground: 0.2 0 0;
+    --sidebar-primary: 0.55 0.22 200;
+    --sidebar-primary-foreground: 0.98 0 0;
+    --sidebar-accent: 0.65 0 0;
+    --sidebar-accent-foreground: 0.25 0 0;
+    --sidebar-border: 0.68 0 0;
+    --sidebar-ring: 0.55 0.22 200;
+
+    --bevel-highlight: 0.95 0 0;
+    --bevel-shadow: 0.35 0 0;
+    --window-title-bg: 0.55 0.22 200;
+    --window-title-fg: 0.98 0 0;
+  }
+
+  .dark {
+    --background: 0.74 0 0;
+    --foreground: 0.2 0 0;
+    --card: 0.78 0 0;
+    --card-foreground: 0.2 0 0;
+    --popover: 0.78 0 0;
+    --popover-foreground: 0.2 0 0;
+
+    --primary: 0.74 0 0;
+    --primary-foreground: 0.2 0 0;
+
+    --secondary: 0.5 0.18 200;
+    --secondary-foreground: 0.98 0 0;
+    --muted: 0.65 0 0;
+    --muted-foreground: 0.3 0 0;
+
+    --accent: 0.55 0.22 200;
+    --accent-foreground: 0.98 0 0;
+
+    --destructive: 0.5 0.25 25;
+    --destructive-foreground: 0.98 0 0;
+
+    --border: 0.68 0 0;
+    --input: 0.85 0 0;
+    --ring: 0.55 0.22 200;
+
+    --chart-1: 0.55 0.22 200;
+    --chart-2: 0.5 0.25 25;
+    --chart-3: 0.45 0.2 120;
+    --chart-4: 0.6 0.15 280;
+    --chart-5: 0.65 0.18 40;
+
+    --sidebar: 0.74 0 0;
+    --sidebar-foreground: 0.2 0 0;
+    --sidebar-primary: 0.55 0.22 200;
+    --sidebar-primary-foreground: 0.98 0 0;
+    --sidebar-accent: 0.65 0 0;
+    --sidebar-accent-foreground: 0.25 0 0;
+    --sidebar-border: 0.68 0 0;
+    --sidebar-ring: 0.55 0.22 200;
+
+    --bevel-highlight: 0.95 0 0;
+    --bevel-shadow: 0.35 0 0;
+    --window-title-bg: 0.55 0.22 200;
+    --window-title-fg: 0.98 0 0;
+  }
+
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+}
+
+@layer utilities {
+  .transition-smooth {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .bevel-raised {
+    box-shadow: 1px 1px 0 oklch(var(--bevel-highlight)), -1px -1px 0
+      oklch(var(--bevel-shadow)), 2px 2px 0 oklch(var(--bevel-highlight)), -2px
+      -2px 0 oklch(var(--bevel-shadow));
+  }
+
+  .bevel-pressed {
+    box-shadow: inset 1px 1px 0 oklch(var(--bevel-shadow)), inset -1px -1px 0
+      oklch(var(--bevel-highlight));
+  }
+
+  .window-frame {
+    border: 2px solid;
+    border-color: oklch(var(--bevel-highlight)) oklch(var(--bevel-shadow))
+      oklch(var(--bevel-shadow)) oklch(var(--bevel-highlight));
+  }
+
+  .window-title {
+    background: linear-gradient(90deg, #000080, #1084d0);
+    color: oklch(var(--window-title-fg));
+    padding: 1px 2px;
+    font-weight: bold;
+    font-size: 11px;
+  }
+
+  .text-input-95 {
+    background: oklch(var(--input));
+    border: 2px solid;
+    border-color: oklch(var(--bevel-shadow)) oklch(var(--bevel-highlight))
+      oklch(var(--bevel-highlight)) oklch(var(--bevel-shadow));
+    padding: 2px 3px;
+    font-family: var(--font-body);
+    font-size: 11px;
+  }
+
+  .btn-95 {
+    border: 2px solid;
+    border-color: oklch(var(--bevel-highlight)) oklch(var(--bevel-shadow))
+      oklch(var(--bevel-shadow)) oklch(var(--bevel-highlight));
+    background: oklch(var(--background));
+    color: oklch(var(--foreground));
+    padding: 3px 12px;
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: normal;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .btn-95:active {
+    border-color: oklch(var(--bevel-shadow)) oklch(var(--bevel-highlight))
+      oklch(var(--bevel-highlight)) oklch(var(--bevel-shadow));
+  }
+
+  .statusbar-95 {
+    display: flex;
+    height: 22px;
+    background: oklch(var(--background));
+    border-top: 1px solid oklch(var(--bevel-highlight));
+    font-size: 11px;
+    font-family: var(--font-body);
+  }
+
+  .statusbar-item {
+    flex: 1;
+    padding: 2px 4px;
+    border-right: 1px solid oklch(var(--border));
+    display: flex;
+    align-items: center;
+  }
+}

@@ -1,0 +1,210 @@
+type UsernameEffect = 
+ variant {
+   Cyberpunk;
+   Fire;
+   Glitch;
+   Gold;
+   Ice;
+   MatrixBlue;
+   MatrixGreen;
+   MatrixRed;
+   Neon;
+   None;
+   Rainbow;
+   Shadow;
+ };
+type UserId = principal;
+type User = 
+ record {
+   avatarUrl: text;
+   bio: text;
+   biography: text;
+   id: UserId;
+   isOnline: bool;
+   lastSeen: Timestamp;
+   role: Role;
+   textPlate: TextPlate;
+   username: text;
+   usernameEffect: UsernameEffect;
+ };
+type Timestamp = int;
+type TextPlate = 
+ variant {
+   AuroraPlate;
+   ElectricPlate;
+   FirePlate;
+   Galaxy;
+   LavaPlate;
+   MatrixBlue;
+   MatrixGreen;
+   MatrixPink;
+   MatrixPurple;
+   MatrixRed;
+   MatrixYellow;
+   Neon;
+   None;
+   Rainbow;
+   ScanlinesPlate;
+ };
+type Role = 
+ variant {
+   Admin;
+   Owner;
+   User;
+ };
+type ProfileUpdate = 
+ record {
+   avatarUrl: text;
+   bio: text;
+   biography: text;
+   textPlate: opt TextPlate;
+   username: text;
+   usernameEffect: UsernameEffect;
+ };
+type PrivateMessageId = nat;
+type PrivateMessage = 
+ record {
+   body: text;
+   fromUsername: text;
+   id: PrivateMessageId;
+   isRead: bool;
+   timestamp: Timestamp;
+   toUsername: text;
+ };
+type NoteResult = 
+ variant {
+   err: text;
+   ok: Note;
+ };
+type NoteInput = 
+ record {
+   body: text;
+   title: text;
+ };
+type NoteId = nat;
+type Note = 
+ record {
+   body: text;
+   createdAt: Timestamp;
+   id: NoteId;
+   ownerId: UserId;
+   title: text;
+   updatedAt: Timestamp;
+ };
+type MessageId = nat;
+type MailResult = 
+ variant {
+   err: text;
+   ok: Mail;
+ };
+type MailInput = 
+ record {
+   body: text;
+   recipientUsername: text;
+   subject: text;
+ };
+type MailId = nat;
+type Mail = 
+ record {
+   body: text;
+   id: MailId;
+   isRead: bool;
+   recipientUsername: text;
+   sender: UserId;
+   senderUsername: text;
+   sentAt: Timestamp;
+   subject: text;
+ };
+type FriendRequestStatus = 
+ variant {
+   Accepted;
+   Pending;
+   Rejected;
+ };
+type FriendRequest = 
+ record {
+   fromUsername: text;
+   status: FriendRequestStatus;
+   timestamp: Timestamp;
+   toUsername: text;
+ };
+type ChatMessage = 
+ record {
+   body: text;
+   id: MessageId;
+   sender: UserId;
+   senderUsername: text;
+   timestamp: Timestamp;
+ };
+type AuthResult = 
+ variant {
+   err: text;
+   ok: User;
+ };
+service : {
+  acceptFriendRequest: (fromUsername: text) -> (variant {
+                                                  err: text;
+                                                  ok;
+                                                });
+  createNote: (input: NoteInput) -> (NoteResult);
+  deleteNote: (id: NoteId) -> (variant {
+                                 err: text;
+                                 ok;
+                               });
+  getFriendRequests: () -> (vec FriendRequest) query;
+  getFriends: () -> (vec User) query;
+  getInbox: () -> (vec Mail) query;
+  getMessages: (limit: nat) -> (vec ChatMessage) query;
+  getNote: (id: NoteId) -> (opt Note) query;
+  getNotes: () -> (vec Note) query;
+  getPrivateMessages: (withUsername: text) -> (vec PrivateMessage) query;
+  getProfile: (id: UserId) -> (opt User) query;
+  getSent: () -> (vec Mail) query;
+  listUsers: () -> (vec User) query;
+  login: (passwordHash: text) -> (AuthResult);
+  markPrivateMessageRead: (id: PrivateMessageId) -> (variant {
+                                                       err: text;
+                                                       ok;
+                                                     });
+  markRead: (id: MailId) -> (variant {
+                               err: text;
+                               ok;
+                             });
+  ping: () -> ();
+  register: (username: text, passwordHash: text) -> (AuthResult);
+  rejectFriendRequest: (fromUsername: text) -> (variant {
+                                                  err: text;
+                                                  ok;
+                                                });
+  sendFriendRequest: (toUsername: text) -> (variant {
+                                              err: text;
+                                              ok;
+                                            });
+  sendMail: (input: MailInput) -> (MailResult);
+  sendMessage: (body: text) -> (variant {
+                                  err: text;
+                                  ok: ChatMessage;
+                                });
+  sendPrivateMessage: (toUsername: text, body: text) ->
+   (variant {
+      err: text;
+      ok;
+    });
+  setTextPlate: (targetUsername: text, plate: TextPlate) ->
+   (variant {
+      err: text;
+      ok;
+    });
+  setUserRole: (targetUsername: text, role: Role) ->
+   (variant {
+      err: text;
+      ok;
+    });
+  setUsernameEffect: (targetUsername: text, effect: UsernameEffect) ->
+   (variant {
+      err: text;
+      ok;
+    });
+  updateNote: (id: NoteId, input: NoteInput) -> (NoteResult);
+  updateProfile: (update: ProfileUpdate) -> (AuthResult);
+}

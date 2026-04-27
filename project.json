@@ -1,0 +1,23 @@
+{
+  "overview": "Onyx OS 95 is a Windows 95/98 themed web desktop with boot sequence, user authentication, persistent chat, and a suite of retro-inspired apps including Internet Explorer, all within a draggable windowed desktop environment.",
+  "features": [
+    "Windows 95-style boot sequence with startup chime",
+    "User authentication with Owner/Admin/User roles",
+    "Live Chat with persistent message history and username effects",
+    "Internet Explorer app with retro browser UI",
+    "32-bit pixelated app icons",
+    "Pixelated matrix rain username backgrounds",
+    "System info showing Compaq Presario 700 specs",
+    "My Computer, Mail, Notes, Game Center, Paint apps"
+  ],
+  "category": "productivity",
+  "tags": [
+    "windows95",
+    "retro",
+    "desktop",
+    "chat",
+    "nostalgia",
+    "pixel-art"
+  ],
+  "last_updated": "2026-04-24T03:36:22.738Z"
+}

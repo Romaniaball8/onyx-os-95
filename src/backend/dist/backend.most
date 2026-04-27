@@ -1,0 +1,247 @@
+// Version: 3.0.0
+type ChatMessage__559859432 =
+  {
+    body : Text;
+    id : MessageId__810287564;
+    sender : UserId__1023572875;
+    senderUsername : Text;
+    timestamp : Timestamp__753029554
+  };
+type FriendRequestStatus__401463939 = {#Accepted; #Pending; #Rejected};
+type FriendRequest__577060681 =
+  {
+    fromUsername : Text;
+    status : FriendRequestStatus__401463939;
+    timestamp : Timestamp__553438310;
+    toUsername : Text
+  };
+type List__415060402<T> = List__790383201<T>;
+type List__790383201<T> =
+  {
+    var blockIndex : Nat__490723111;
+    var blocks : [var [var ?T]];
+    var elementIndex : Nat__490723111
+  };
+type MailId__62165231 = Nat;
+type MailId__681116930 = MailId__62165231;
+type MailInternal__955134671 =
+  {
+    body : Text;
+    id : MailId__681116930;
+    var isRead : Bool;
+    recipientUsername : Text;
+    sender : UserId__627869802;
+    senderUsername : Text;
+    sentAt : Timestamp__985613852;
+    subject : Text
+  };
+type MessageId__291319400 = Nat;
+type MessageId__810287564 = MessageId__291319400;
+type Nat__490723111 = Nat__920180692;
+type Nat__920180692 = Nat;
+type NoteId__167160349 = Nat;
+type NoteId__94891047 = NoteId__167160349;
+type NoteInternal__277413055 =
+  {
+    var body : Text;
+    createdAt : Timestamp__354304526;
+    id : NoteId__94891047;
+    ownerId : UserId__26715801;
+    var title : Text;
+    var updatedAt : Timestamp__354304526
+  };
+type OldList__955980737<T> = List__415060402<T>;
+type OldTextPlate__760277637 =
+  {
+    #AuroraPlate;
+    #ElectricPlate;
+    #FirePlate;
+    #Galaxy;
+    #LavaPlate;
+    #MatrixBlue;
+    #MatrixGreen;
+    #MatrixPink;
+    #MatrixPurple;
+    #MatrixRed;
+    #MatrixYellow;
+    #Neon;
+    #None;
+    #Rainbow;
+    #ScanlinesPlate
+  };
+type OldUserInternal__616431634 =
+  {
+    var avatarUrl : Text;
+    var bio : Text;
+    var biography : Text;
+    id : Principal;
+    var lastSeen : Int;
+    var passwordHash : Text;
+    var role : {#Admin; #Owner; #User};
+    var textPlate : OldTextPlate__760277637;
+    var username : Text;
+    var usernameEffect : OldUsernameEffect__125739812
+  };
+type OldUsernameEffect__125739812 =
+  {
+    #Cyberpunk;
+    #Fire;
+    #Glitch;
+    #Gold;
+    #Ice;
+    #MatrixBlue;
+    #MatrixGreen;
+    #MatrixRed;
+    #Neon;
+    #None;
+    #Rainbow;
+    #Shadow
+  };
+type PrivateMessageId__668957411 = Nat;
+type PrivateMessageInternal__903841689 =
+  {
+    body : Text;
+    fromUsername : Text;
+    id : PrivateMessageId__668957411;
+    var isRead : Bool;
+    timestamp : Timestamp__553438310;
+    toUsername : Text
+  };
+type Role__717780527 = {#Admin; #Owner; #User};
+type TextPlate__424695423 =
+  {
+    #AuroraPlate;
+    #ElectricPlate;
+    #FirePlate;
+    #Galaxy;
+    #LavaPlate;
+    #MatrixBlue;
+    #MatrixGreen;
+    #MatrixPink;
+    #MatrixPurple;
+    #MatrixRed;
+    #MatrixYellow;
+    #Neon;
+    #None;
+    #Rainbow;
+    #ScanlinesPlate
+  };
+type Timestamp__301639476 = Int;
+type Timestamp__354304526 = Timestamp__301639476;
+type Timestamp__553438310 = Timestamp__301639476;
+type Timestamp__753029554 = Timestamp__301639476;
+type Timestamp__778030842 = Timestamp__301639476;
+type Timestamp__985613852 = Timestamp__301639476;
+type UserId__1023572875 = UserId__158757552;
+type UserId__1043627770 = UserId__158757552;
+type UserId__158757552 = Principal;
+type UserId__26715801 = UserId__158757552;
+type UserId__627869802 = UserId__158757552;
+type UserInternal__993508630 =
+  {
+    var avatarUrl : Text;
+    var bio : Text;
+    var biography : Text;
+    id : UserId__1043627770;
+    var lastSeen : Timestamp__778030842;
+    var passwordHash : Text;
+    var role : Role__717780527;
+    var textPlate : TextPlate__424695423;
+    var username : Text;
+    var usernameEffect : UsernameEffect__998336800
+  };
+type UsernameEffect__998336800 =
+  {
+    #Cyberpunk;
+    #Fire;
+    #Glitch;
+    #Gold;
+    #Ice;
+    #MatrixBlue;
+    #MatrixGreen;
+    #MatrixRed;
+    #Neon;
+    #None;
+    #Rainbow;
+    #Shadow
+  };
+actor ({
+  stable chatMessages :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?ChatMessage__559859432]];
+      var elementIndex : Nat__490723111
+    };
+  stable friendRequests :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?FriendRequest__577060681]];
+      var elementIndex : Nat__490723111
+    };
+  stable mailCounter : {var value : Nat};
+  stable mails :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?MailInternal__955134671]];
+      var elementIndex : Nat__490723111
+    };
+  stable messageCounter : {var value : Nat};
+  stable noteCounter : {var value : Nat};
+  stable notes :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?NoteInternal__277413055]];
+      var elementIndex : Nat__490723111
+    };
+  stable onlineThresholdNs : Int;
+  stable pmCounter : {var value : Nat};
+  stable privateMessages :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?PrivateMessageInternal__903841689]];
+      var elementIndex : Nat__490723111
+    };
+  in users : OldList__955980737<OldUserInternal__616431634>
+}, {
+  stable chatMessages :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?ChatMessage__559859432]];
+      var elementIndex : Nat__490723111
+    };
+  stable friendRequests :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?FriendRequest__577060681]];
+      var elementIndex : Nat__490723111
+    };
+  stable mailCounter : {var value : Nat};
+  stable mails :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?MailInternal__955134671]];
+      var elementIndex : Nat__490723111
+    };
+  stable messageCounter : {var value : Nat};
+  stable noteCounter : {var value : Nat};
+  stable notes :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?NoteInternal__277413055]];
+      var elementIndex : Nat__490723111
+    };
+  stable onlineThresholdNs : Int;
+  stable pmCounter : {var value : Nat};
+  stable privateMessages :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?PrivateMessageInternal__903841689]];
+      var elementIndex : Nat__490723111
+    };
+  stable users :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?UserInternal__993508630]];
+      var elementIndex : Nat__490723111
+    }
+}) ;
